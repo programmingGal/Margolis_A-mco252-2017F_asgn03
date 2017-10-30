@@ -4,9 +4,9 @@ public class MyRandomClass implements IRandomValueGenerator
 {  
 	private int randNum;
 	
-   public MyRandomClass(int min,int max)
+   public MyRandomClass()
    {
-	   getRandomValue(min,max);
+	  
    }
    
    public int getRandomValue(int min, int max)
