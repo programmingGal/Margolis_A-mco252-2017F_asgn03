@@ -1,5 +1,5 @@
 
 public interface IRandomValueGenerator 
 {
-  public double getRandomValue();
+  public int getRandomValue(int min,int max);
 }
