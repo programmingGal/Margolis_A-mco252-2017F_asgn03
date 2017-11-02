@@ -210,8 +210,7 @@ public class BettingActivityTests
 				     
 				    int expected = (int) x;
 					
-					assertSame(expected,better.getCurrentBalance());   //  got this error:
-					                                                            //The method assertEquals(double, double) from the type Assert is deprecated
+					assertSame(expected,better.getCurrentBalance());  
 				}
 				
 				
