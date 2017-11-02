@@ -45,13 +45,83 @@ public class BettingActivity
 	
 	public void betOnANumber(int amnt, int min, int max,int selectedNumber)
 	{   
-		// throws: negativevalue if balance tries to go below minimum or if user enters negative, or enters invalidrange,
-		throw new IllegalArgumentException();
+		// throws: min.... if balance tries to go below minimum or if user enters negative, or enters invalidrange,
+		
+		if (amnt <0 || min<0 || max<0 || selectedNumber<0)
+		{
+			throw new NegativeValueException();
+		}
+		
+		else if (max < min)
+		{
+			throw new InvalidRangeException();
+		}
+		
+		int randNum = randObj.getRandomValue(min, max);
+		
+		
+		// check if guess was right
+		   if (randNum==selectedNumber)
+		   {   
+			   // increase balance by this expression: (range -1)*amount   (range is max-min +1)
+			    
+			   balance += ((max-min)*amnt);
+		   }
+		   
+		   else                // guess was not right
+		   {
+			   // decrease balance by amount
+			   
+			   if (balance - amnt < minBalance)
+			   {
+				   throw new MinimumBalanceException();  // balance may not go below minimum
+			   }
+			   
+			   else        // you can decrease balance 
+			   {
+				   balance-=amnt;
+			   }
+		   }
+	    
 	}
+	
+	
 	
 	public void betOnProbability(int amnt,double p)
 	{
-		throw new IllegalArgumentException();
+		if (amnt <0)
+		{
+			throw new NegativeValueException();
+		}
+		
+		// checking validity of probability
+		else if (p < 0 || p>1)
+		{
+			throw new InvalidProbabilityException();
+		}
+		
+		
+		// generate a random boolean value
+		boolean happened = randObj.getRandBoolean();
+		
+		
+		if (happened)  // event actually occurred
+		{
+			balance += (((Math.pow(p, -1))- 1) * amnt);
+		}
+		
+		else              // event didn't occur
+		{
+			if (balance - amnt < minBalance)
+			{
+				throw new MinimumBalanceException();          // bec. balance can't go below minimum
+			}
+			
+			else
+			{
+				balance -= amnt;
+			}
+		}
 	}
 	
 	

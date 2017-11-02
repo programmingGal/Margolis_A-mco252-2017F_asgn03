@@ -42,7 +42,7 @@ public class BettingActivityTests
 				int actualNum = 30; // # I will pass to the method
 				
 				
-				better.betOnANumber(amount, actualNum, 0, bet);   
+				better.betOnANumber(amount, actualNum, 35, bet);   
 			
 			}
 			
@@ -114,7 +114,7 @@ public class BettingActivityTests
 			public void invalidRangeThrowsException()
 			{
 				int amount = 25;
-				int bet = -25;
+				int bet = 20;
 				int actualNum=25;
 				int min = actualNum;
 				int max= 15;
@@ -125,7 +125,7 @@ public class BettingActivityTests
 			
   // testing betOnProbability method:
 			
-			// this tests that negative amount entered throw exception
+			// this tests that negative amount entered throws exception
 			@Test (expected = NegativeValueException.class)
 			public void negativeAmountThrowsException()
 			{
@@ -193,6 +193,7 @@ public class BettingActivityTests
 			
 			
 				// this tests that a win on probability bet makes balance increase by (p^-1 - 1)* amount
+				
 				@Test
 				public void winningBetIncreasesBalanceCorrectly()
 				{   
@@ -205,10 +206,11 @@ public class BettingActivityTests
 					double probability=.3; 
 					
 					better.betOnProbability(amount, probability);
-				    double expected = ((Math.pow(probability,-1)) - 1) * amount;
-				    double delta = 0;                              
+				    double x = ((Math.pow(probability,-1)) - 1) * amount;
+				     
+				    int expected = (int) x;
 					
-					assertEquals(expected,better.getCurrentBalance(), delta);   // added this bec. got this error:
+					assertSame(expected,better.getCurrentBalance());   //  got this error:
 					                                                            //The method assertEquals(double, double) from the type Assert is deprecated
 				}
 				

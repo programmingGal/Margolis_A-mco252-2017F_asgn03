@@ -20,7 +20,7 @@ public class MyRandomClass implements IRandomValueGenerator
    
    
    // returns a random boolean value
-   public boolean getRandomBoolean()
+   public boolean getRandBoolean()
    {
 	   Random generator = new Random();
 	   
