@@ -2,6 +2,7 @@
 public class MyMockRandomClass implements IRandomValueGenerator
 {
   int randNum;
+  boolean fakeRandBoolean;
   
   public MyMockRandomClass()
   {
@@ -9,21 +10,33 @@ public class MyMockRandomClass implements IRandomValueGenerator
   }
   
   
-  // this method is just there to be able to implement the interface
+  // this method is  there to be able to implement the interface
+  // and you could pass it anything for testing purposes , the second parameter is just there to keep the same method signature
   public int getRandomValue(int min,int max)
   {
+	  randNum = min;
 	  return randNum;
   }
   
   
-  // this method returns a fake random # - you could pass in anything for testing purposes
-  
-  public int getMockRandomValue(int amount)
+  public void setFakeRandBoolean(int x)
   {
-	  randNum = amount;
+	  if (x==0)
+	  {
+		  fakeRandBoolean = false;
+	  }
 	  
-	  return randNum;
+	  else if (x==1)
+	  {
+		  fakeRandBoolean = true;
+	  }
+	  
   }
   
+  public boolean getRandBoolean()
+  {
+	  return fakeRandBoolean;
+  }
+ 
   
 }
